@@ -6,10 +6,10 @@ import time
 """
 # 1. Prints a prompt string specified by shell variable PS1 when expecting a command (if PS1 is not set, the default prompt should be "$ ").
 #
-	# 2. Accepts the standard unix command shell syntex for specifying commands and parameters
-	# 	* Your shell should create a child process that uses execve to run the command with its parameters.
-	# 	* If an absolute path is not specified, your shell should instead find it using the $PATH environment variable.
-	# 	* The parent process should wait for the child to terminate before printing another command prompt.
+# 2. Accepts the standard unix command shell syntex for specifying commands and parameters
+# 	* Your shell should create a child process that uses execve to run the command with its parameters.
+# 	* If an absolute path is not specified, your shell should instead find it using the $PATH environment variable.
+# 	* The parent process should wait for the child to terminate before printing another command prompt.
 #
 	# 3. Handles expected user error.
 	# 	* Prints "command not found" if the command is not found. For example, if the user tries to run program `lx` and this program doesn't exist, the shell should respond with "lx: command not found".
@@ -19,7 +19,7 @@ import time
 # 	* The "exit" command should cause your shell to terminate.
 # 	* Change directories with the "cd" command.
 #
-	# 5. Redirection of input and output (e.g. $ ls > /tmp/files.txt).
+# 5. Redirection of input and output (e.g. $ ls > /tmp/files.txt).
 #
 	# 6. Simple pipes (e.g. $ ls | sort -r).
 #
@@ -50,7 +50,7 @@ def redirection(redirection_input):
             os.execve(program, args, os.environ)
         except FileNotFoundError:
             pass
-    os.write(2, ("Child:    Error: Could not exec %s\n" % args[0]).encode())
+    os.write(2, ("Child:    Error: Could not exec %s.\n Command may not found.\n\n" % args[0]).encode())
 
 while True:
     if 'PS1' in os.environ:
@@ -84,11 +84,11 @@ while True:
                 redirection(kbd_input_str)
             else:
                 redirection(kbd_input_str)
-            sys.exit(1) 
+            sys.exit(1)
         else:  # parent
-            os.write(1, ("Parent!").encode())
+            # os.write(1, ("Parent!").encode())
             childPidCode = os.wait()
-            os.write(1, ("The child will terminate with this").encode())
+            # os.write(1, ("The child will terminate with this").encode())
 
     # print(kbd_input)  ## TEST
     # rc = os.fork()
