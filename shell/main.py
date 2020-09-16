@@ -1,3 +1,5 @@
+#! /usr/bin/python3
+
 import os
 import sys
 import re
@@ -102,13 +104,20 @@ while True:
         pid = os.getpid()
         rc = os.fork()
         if rc < 0:
-            os.write(2, ("Fork failed!").encode())
+            # os.write(2, ("Fork failed!").encode())
             sys.exit(1)
         elif rc == 0:  # child
-            if '<' in kbd_input_arr or '>' in kbd_input_arr:
+            if '/' in kbd_input_arr:
+                program = kbd_input_arr[0]
+                try:
+                    os.execve(program, kbd_input_arr, os.environ)
+                except FileNotFoundError:
+                    pass
+            elif '<' in kbd_input_arr or '>' in kbd_input_arr:
                 redirection(kbd_input_str)
             else:
                 redirection(kbd_input_str)
             sys.exit(1)
         else:  # parent
-            childPidCode = os.wait()
+            if not '$' in kbd_input_str:
+                childPidCode = os.wait()
