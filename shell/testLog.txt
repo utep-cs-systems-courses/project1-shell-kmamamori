@@ -1,12 +1,12 @@
--e PASSED: no parameter, full pathname
--e FAILED: two commands, full pathname
--e FAILED: two commands, blank line in-between, full pathname
--e PASSED: no parameter, no pathname
--e PASSED: one parameter, full pathname
--e PASSED: one parameter, no pathname
--e PASSED: pipe
--e FAILED: 2 pipes
--e PASSED: redirect input
--e PASSED: redirect output
--e FAILED: background
--e FAILED: change dir
+FAILED: no parameter, full pathname
+FAILED: two commands, full pathname
+FAILED: two commands, blank line in-between, full pathname
+FAILED: no parameter, no pathname
+FAILED: one parameter, full pathname
+FAILED: one parameter, no pathname
+PASSED: pipe
+FAILED: 2 pipes
+FAILED: redirect input
+FAILED: redirect output
+FAILED: background
+FAILED: change dir
