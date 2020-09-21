@@ -6,7 +6,7 @@ import os, sys, re
 fdOut = os.open("p0-output.txt", os.O_CREAT | os.O_WRONLY)
 fdIn = os.open("p0-io.py", os.O_RDONLY)
 
-print(f"fdIn={fdIn}, fdOut={fdOut}");
+print(f"fdIn={fdIn}, fdOut={fdOut}")
 
 # note that
 #  fd #0 is "standard input" (by default, attached to kbd)
