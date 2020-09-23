@@ -76,10 +76,27 @@ while True:
     p = os.getcwd()+' $' if 'PS1' not in os.environ else os.environ['PS1']
     os.write(1, p.encode())
     try:
+        # """
         kbd_input_str = input().strip() #input from the user
         kbd_input_arr = kbd_input_str.split() #parse to an array
+        # """
+
+        """ os.read use
+        kbd_input = os.read(0, 128).decode()
+        if len(kbd_input) == 0:
+            break
+        kbd_input_str = re.split("\\n", kbd_input)
+        kbd_input_arr = kbd_input.split("\\n")
+        kbd_input_arr = [item.split() for item in kbd_input_arr]
+        """
+
     except EOFError:
         sys.exit(1)
+
+    # kbd_input_arr = [item_item.strip() for item in kbd_input_arr for item_item in item]
+    """ os.read use
+    for kbd_input_arr in kbd_input_arr:
+    """
     if "exit" in kbd_input_arr: # user entered 'exit'
         sys.exit(0)
     isWaitSign = False if '&' in kbd_input_arr else True # value which deterines bg-'&' comparison at the end
